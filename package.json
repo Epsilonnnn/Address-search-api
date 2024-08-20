@@ -8,7 +8,7 @@
     "start:dev": "nodemon -r dotenv/config ./src/index.js",
     "lint": "eslint ./src",
     "key:generate": "./bin/generateToken.js",
-    "test": "jest"
+    "test": "jest --runInBand"
   },
   "dependencies": {
     "dotenv": "^16.4.5",

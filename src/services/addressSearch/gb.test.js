@@ -111,6 +111,11 @@ describe('search', () => {
     });
   });
 
+  afterEach(() => {
+    resolveAddress.mockReset();
+    fetchSuggestions.mockReset();
+  });
+
   it('should return result for a search query', async () => {
     const service = getGBSearcher();
     const result = await service.search('test');
@@ -200,13 +205,13 @@ describe('search', () => {
     const service = getGBSearcher();
 
     try {
-      service.search('test');
+      await service.search('test');
     } catch(err) {
       expect(err).toBeInstanceOf(ExternalApiError);
       expect({
         message: err.message,
         provider: err.provider,
-        code: err.status,
+        code: err.code,
         isHTTPError: err.isHTTPError,
       }).toEqual({
         message: 'test server error',
